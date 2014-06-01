@@ -16,10 +16,9 @@ app.use( bodyParser() );
 
 classesController = new ClassesController();
 app.post( '/:className', classesController.create.bind( classesController ) );
-app.get( '/:className/:objectId', classesController.one );
-
-app.put( '/:className/:objectId', classesController.update );
+app.get( '/:className/:objectId', classesController.one.bind( classesController ) );
+app.put( '/:className/:objectId', classesController.update.bind( classesController ) );
 app.get( '/:className', classesController.all.bind( classesController ) );
-app.delete( '/:className/:objectId', classesController.remove );
+app.delete( '/:className/:objectId', classesController.remove.bind( classesController ) );
 
 module.exports = app;

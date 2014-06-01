@@ -28,9 +28,8 @@ ClassesController.prototype = {
   },
 
   all: function( req, res, next ){
-    debugger;
     new this.AbstractModel( req.params.className )
-      .find()
+      .find( req.query.where ? JSON.parse( req.query.where ) : null )
       .pipe( this.JSONStream.stringify() )
       .pipe( res );
   },
