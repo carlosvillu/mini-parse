@@ -3,6 +3,8 @@ var DataBase = require( './../data-base' );
 var AbstractModel = ( function(){
 
   var AbstractModelClass = function( className, body ){
+    this.skipped = null;
+    this.limited = null;
     this.collection = DataBase.getInstance().collection( className );
   };
 
@@ -17,7 +19,18 @@ var AbstractModel = ( function(){
   };
 
   AbstractModelClass.prototype.find = function( query ){
-    return this.collection.find( query || {} );
+    var find = this.collection.find( query || {} );
+    if( this.limited )
+    {
+      find = find.limit( this.limited );
+    }
+
+    if( this.skipped );
+    {
+      find = find.skip( this.skipped );
+    }
+
+    return find;
   }
 
   AbstractModelClass.prototype.findById = function( id, cb ){
@@ -36,6 +49,16 @@ var AbstractModel = ( function(){
       update: update,
       new: true
     }, cb );
+    return this;
+  };
+
+  AbstractModelClass.prototype.limit = function( limit ){
+    this.limited = limit;
+    return this;
+  };
+
+  AbstractModelClass.prototype.skip = function( skip ){
+    this.skipped = skip;
     return this;
   };
 

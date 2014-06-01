@@ -29,6 +29,8 @@ ClassesController.prototype = {
 
   all: function( req, res, next ){
     new this.AbstractModel( req.params.className )
+      .limit( req.query.limit ? parseInt( req.query.limit, 10 ) : null )
+      .skip( req.query.skip ? parseInt( req.query.skip, 10 ) : null )
       .find( req.query.where ? JSON.parse( req.query.where ) : null )
       .pipe( this.JSONStream.stringify() )
       .pipe( res );
