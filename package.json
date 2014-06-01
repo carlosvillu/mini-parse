@@ -1,0 +1,33 @@
+{
+  "name": "mini-parse",
+  "version": "0.0.0",
+  "description": "Mininal version of Parse",
+  "main": "index.js",
+  "dependencies": {
+    "JSONStream": "~0.8.2",
+    "body-parser": "~1.2.2",
+    "express": "~4.4.0",
+    "mongojs": "~0.13.0",
+    "morgan": "~1.1.1",
+    "nconf": "~0.6.9",
+    "winston": "~0.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:carlosvillu/mini-parse.git"
+  },
+  "keywords": [
+    "Parse",
+    "Baas"
+  ],
+  "author": "Carlos Villuendas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlosvillu/mini-parse/issues"
+  },
+  "homepage": "https://github.com/carlosvillu/mini-parse"
+}
