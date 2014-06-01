@@ -34,7 +34,11 @@ When you ask for a collection there are 3 important GET parameters,
 * limit: maximum number of results in a search
 * skip: interval of skipped elements
 
+### Example of a valid query
 
+Assuming we have already created a to-do collection for a GTD tool, a sample of a typical query could be as follows,
+
+`http://localhost:3000/1/classes/todo?where=%7B%22key%22:%22value%22%7D&limit=1&skip=1`
 :)
 
 
