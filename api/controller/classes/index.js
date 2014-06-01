@@ -2,7 +2,6 @@ var AbstractModel = require( './../../model/abstract' ),
     JSONStream = require('JSONStream');
 
 var ClassesController = function(){
-  this.dependencies = "AbstractModel, JSONStream"
   this.AbstractModel = AbstractModel;
   this.JSONStream = JSONStream;
 };
