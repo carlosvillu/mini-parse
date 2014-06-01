@@ -26,6 +26,15 @@ URL | Verb | Description
 /1/classes/:className | GET | Queries
 /1/classes/:className/:objectId | DELETE	| Deleting Objects
 
+### Query, limit, skip
+
+When you ask for a collection there are 3 important GET parameters,
+
+* where: URL safe enconding of a stringify object, which encapsulates a search in a Mongo collection. For example, `encodeURI( JSON.stringify( {key: 'value'} ) )`
+* limit: maximum number of results in a search
+* skip: interval of skipped elements
+
+
 :)
 
 
