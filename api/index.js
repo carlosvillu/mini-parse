@@ -2,6 +2,7 @@ var express = require( 'express' ),
     bodyParser = require('body-parser'),
     ClassesController = require( './controller/classes' ),
     winston = require( 'winston' ),
+    cors = require('cors'),
     classesController;
 app = express();
 
@@ -12,6 +13,7 @@ var handler = function(req, res, next){
   } );
 };
 
+app.use( cors() );
 app.use( bodyParser() );
 
 classesController = new ClassesController();

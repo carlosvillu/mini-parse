@@ -22,6 +22,7 @@ ClassesController.prototype = {
   },
 
   update: function( req, res, next ){
+    delete req.body._id;
     new this.AbstractModel( req.params.className ).update( req.params.objectId, req.body, function( err, doc ){
       res.json( doc );
     } );
