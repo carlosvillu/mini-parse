@@ -1,3 +1,4 @@
+[ ![Codeship Status for carlosvillu/mini-parse](https://www.codeship.io/projects/cf182480-efe9-0131-5708-661bbcbf0c93/status)](https://www.codeship.io/projects/27143)
 # mini-parse
  
 Mini-version of [Parse](https://www.parse.com)
