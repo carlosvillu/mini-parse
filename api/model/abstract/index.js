@@ -14,6 +14,7 @@ var AbstractModel = ( function(){
   };
 
   AbstractModelClass.prototype.save = function( cb ){
+    this.body.createdAt = this.body.updatedAt = new Date();
     this.collection.save( this.body, cb );
     return this;
   };
@@ -44,9 +45,11 @@ var AbstractModel = ( function(){
   };
 
   AbstractModelClass.prototype.update = function( id, update, cb ){
+    update.updatedAt = new Date();
     this.collection.findAndModify( {
       query: {_id: DataBase.raw.ObjectId( id )},
-      update: update,
+      upsert: true,
+      update: {$set: update},
       new: true
     }, cb );
     return this;
