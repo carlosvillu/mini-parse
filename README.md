@@ -44,4 +44,20 @@ Assuming we have already created a to-do collection for a GTD tool, a sample of 
 
 
 
+### TODO
+
+
+- [ ] Objects
+ - [ ] Populate retrives with the `include`option
+ - [ ] Embedded objectId
+ - [ ] Counters
+ - [ ] Arrays
+ - [ ] Relations
+ - [ ] Delete single field
+ - [ ] Batch Operations
+ - [ ] Data Types ?
+- [ ] QUERY
+ - [ ] Order
+ - [ ] Keys
+ - [ ] Count
 
