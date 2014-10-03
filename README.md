@@ -49,7 +49,7 @@ Assuming we have already created a to-do collection for a GTD tool, a sample of 
 
 - [ ] Objects
  - [x] Populate retrives with the `include`option ( Only for documents in the same Collection, waiting for Relations )
- - [ ] Embedded objectId
+ - [x] Embedded objectId
  - [ ] Counters
  - [ ] Arrays
  - [ ] Relations
