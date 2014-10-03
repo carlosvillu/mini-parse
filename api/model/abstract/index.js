@@ -1,4 +1,5 @@
 var DataBase = require( './../data-base' );
+var async = require( 'async' );
 
 var AbstractModel = ( function(){
 
@@ -34,8 +35,22 @@ var AbstractModel = ( function(){
     return find;
   }
 
-  AbstractModelClass.prototype.findById = function( id, cb ){
-    this.collection.findOne( {_id: DataBase.raw.ObjectId( id )}, cb );
+  AbstractModelClass.prototype.findById = function( id, includes, cb ){
+    var self = this;
+    this.collection.findOne( {_id: DataBase.raw.ObjectId( id )}, function( err, doc ){
+      if(!includes){
+        cb( err, doc );
+      } else {
+        async.series(
+          includes.map( function( include ){ return function(callback){self.collection.findOne( {_id: DataBase.raw.ObjectId( doc[include] ) }, callback ) }})
+          , function( err_include, docs_include ){
+            docs_include.forEach( function( doc_include, index ){ doc[includes[index]] = doc_include; } );
+            cb( err || err_include, doc );
+          }
+        );
+
+      }
+    } );
     return this;
   };
 

@@ -17,7 +17,8 @@ ObjectsController.prototype = {
   },
 
   one: function( req, res, next ){
-    new this.AbstractModel( req.params.className ).findById( req.params.objectId, function(err, doc){
+    var includes = req.query.include ? req.query.include.split( ',' ) : null;
+    new this.AbstractModel( req.params.className ).findById( req.params.objectId, includes, function(err, doc){
       doc.objectId = doc._id;
       res.json( doc );
     } );
@@ -31,6 +32,7 @@ ObjectsController.prototype = {
   },
 
   all: function( req, res, next ){
+    res.set('Content-Type', 'text/json');
     new this.AbstractModel( req.params.className )
       .limit( req.query.limit ? parseInt( req.query.limit, 10 ) : null )
       .skip( req.query.skip ? parseInt( req.query.skip, 10 ) : null )
