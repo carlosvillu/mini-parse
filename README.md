@@ -60,8 +60,3 @@ Assuming we have already created a to-do collection for a GTD tool, a sample of 
  - [ ] Order
  - [ ] Keys
  - [ ] Count
-
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/carlosvillu/mini-parse/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
