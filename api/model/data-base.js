@@ -7,7 +7,7 @@ nconf.argv()
 
 var DataBase = (function(){
     function DataBase() {
-      this.db = mongojs( nconf.get( 'database:url' ) );
+      this.db = mongojs( nconf.get( 'DATABASE_URL' ) || nconf.get( 'database:url' ) );
       this.collections = {};
     };
 
