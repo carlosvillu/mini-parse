@@ -1,0 +1,21 @@
+version: '2'
+services:
+  # API generator
+  parse:
+    image: mhart/alpine-node
+    ports:
+      - "80:3000"
+    volumes:
+      - ".:/src"
+    links:
+      - mongo
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=mongo/parse
+    command: node /src/index.js
+
+  # Simple Mongo instance
+  mongo:
+    image: mvertes/alpine-mongo
+    ports:
+      - "27017:27017"
