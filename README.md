@@ -15,7 +15,7 @@ The project is based on [Parse documentation](https://www.parse.com/docs/rest). 
 * setting your Mongo URL in your development.json config file
 * execute `node index.js`
 
-### URLs
+## Classes
 
 Remember that you provide the base URL
 
@@ -42,9 +42,25 @@ Assuming we have already created a to-do collection for a GTD tool, a sample of 
 `http://localhost:3000/1/classes/todo?where=%7B%22key%22:%22value%22%7D&limit=1&skip=1`
 :)
 
+## User
+
+Sign Up and Logging an user
+
+URL | Verb | Description
+--- | ---- | -----------
+/1/login | GET | Logging an User
+/1/users | POST | Sign up an User
+
+* Para loguear a un usuario deberás hacer una petición GET agregando abligatoriamente `username` y `password` como query string `http://localhost:3000/1/login?username=pepito&password=123`
+  * Correcto: Respuesta 201 con toda la información que se pasó en el momento de la creación del usuario menos el campo password. Además se agrega un campo `token` con el toker JWT que deberás usar en todas las peticiones `/me`.
+  * Erroneo: Código de respues 401.
+
+* Para crear un usuario debes hacer un post enviando el cuerpo todos los datos que crear asociar al usuario. Además hay dos campos **OBLIGATORIOS** `username` y `password`.
+  * Creación correcta: Código de respuesta 201 y una cabecera `Location` con la url para obtener el recurso recien creado. El cuerpo de la respuesta contiene el `_id` del usuario creado y además un campo `token` que contiene una instancia de un [JSON Web Tokens](http://jwt.io/) que deberás usar en todas las peticiones autenticadas a recursos de usuarios. */me* .
+  * Creación erronea: Si el username ya existe en la bbdd, recibirás un 409 con el body `Conflict`.
 
 
-### TODO
+## TODO
 
 
 - [ ] Objects
