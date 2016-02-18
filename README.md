@@ -44,22 +44,21 @@ Assuming we have already created a to-do collection for a GTD tool, a sample of 
 
 ## User
 
-Sign Up and Logging an user
+Signing up and logging in
 
 URL | Verb | Description
 --- | ---- | -----------
-/1/login | GET | Logging an User
-/1/users | POST | Sign up an User
+/1/login | GET | log in
+/1/users | POST | sign up
 
-* Para loguear a un usuario deberás hacer una petición GET agregando abligatoriamente `username` y `password` como query string `http://localhost:3000/1/login?username=pepito&password=123`
-  * Correcto: Respuesta 201 con toda la información que se pasó en el momento de la creación del usuario menos el campo password. Además se agrega un campo `token` con el toker JWT que deberás usar en todas las peticiones `/me`.
-  * Erroneo: Código de respues 401.
+* To create a new user, make a post sending in its body all the data to be associated with the user. There are two mandatory fields: `username` y `password`.
+  * Correct sign-up leads to a 201 response and a `Location` header with the url to obtain the recently created user. The body of the response contains the user `_id`and a `token` field that includes an instance of a [JSON Web Tokens](http://jwt.io/) that needs to be used in all authenticated requests to `/me`.
+  * Wrong sign-up leads to a 409 response with the body `Conflict`, if the username already exists. 
 
-* Para crear un usuario debes hacer un post enviando el cuerpo todos los datos que crear asociar al usuario. Además hay dos campos **OBLIGATORIOS** `username` y `password`.
-  * Creación correcta: Código de respuesta 201 y una cabecera `Location` con la url para obtener el recurso recien creado. El cuerpo de la respuesta contiene el `_id` del usuario creado y además un campo `token` que contiene una instancia de un [JSON Web Tokens](http://jwt.io/) que deberás usar en todas las peticiones autenticadas a recursos de usuarios. */me* .
-  * Creación erronea: Si el username ya existe en la bbdd, recibirás un 409 con el body `Conflict`.
-
-
+* To log in, make a GET request with `username` and `password` as mandatory parameters in the query string `http://localhost:3000/1/login?username=pepito&password=123`
+  * Correct log-in leads to a 201 response with all the information that went through at the moment the user was created, except the password field. Also, a `token` field is added with a JWT token that should be used in all `/me` requests.
+  * Wrong log-in leads to a 401 response.
+  
 ## TODO
 
 
