@@ -13,6 +13,7 @@ services:
       - NODE_ENV=development
       - DATABASE_URL=mongo/parse
     command: node /src/index.js
+    working_dir: /src
 
   # Simple Mongo instance
   mongo:

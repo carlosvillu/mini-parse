@@ -4,7 +4,7 @@ var express = require( 'express' ),
     winston = require( 'winston' ),
     api = require( './api' );
 
-app = express();
+const app = express();
 
 nconf.argv()
      .env()
@@ -12,7 +12,7 @@ nconf.argv()
 
 app.use( logger() );
 
-app.use( '/1/classes', api );
+app.use( '/1', api );
 
 app.listen( nconf.get( 'app:port' ), function(){
   winston.log( 'info', 'App ready and running in http://localhost:%s', nconf.get( 'app:port' ) );
