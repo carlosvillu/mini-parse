@@ -15,6 +15,16 @@ const userController = new UserController();
 app.post('/users', userController.create);
 app.get('/login', userController.login);
 
+app.get('/me')
+app.put('/me')
+app.delete('/me')
+
+app.post( '/me/:className')
+app.get( '/me/:className/:objectId')
+app.put( '/me/:className/:objectId')
+app.get( '/me/:className')
+app.delete( '/me/:className/:objectId')
+
 classesController = new ClassesController();
 app.post( '/classes/:className', classesController.create.bind( classesController ) );
 app.get( '/classes/:className/:objectId', classesController.one.bind( classesController ) );
