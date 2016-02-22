@@ -15,7 +15,7 @@ The project is based on [Parse documentation](https://www.parse.com/docs/rest). 
 * setting your Mongo URL in your development.json config file
 * execute `node index.js`
 
-### URLs
+## Classes
 
 Remember that you provide the base URL
 
@@ -42,9 +42,24 @@ Assuming we have already created a to-do collection for a GTD tool, a sample of 
 `http://localhost:3000/1/classes/todo?where=%7B%22key%22:%22value%22%7D&limit=1&skip=1`
 :)
 
+## User
 
+Signing up and logging in
 
-### TODO
+URL | Verb | Description
+--- | ---- | -----------
+/1/login | GET | log in
+/1/users | POST | sign up
+
+* To create a new user, make a post sending in its body all the data to be associated with the user. There are two mandatory fields: `username` y `password`.
+  * Correct sign-up leads to a 201 response and a `Location` header with the url to obtain the recently created user. The body of the response contains the user `_id`and a `token` field that includes an instance of a [JSON Web Tokens](http://jwt.io/) that needs to be used in all authenticated requests to `/me`.
+  * Wrong sign-up leads to a 409 response with the body `Conflict`, if the username already exists. 
+
+* To log in, make a GET request with `username` and `password` as mandatory parameters in the query string `http://localhost:3000/1/login?username=pepito&password=123`
+  * Correct log-in leads to a 201 response with all the information that went through at the moment the user was created, except the password field. Also, a `token` field is added with a JWT token that should be used in all `/me` requests.
+  * Wrong log-in leads to a 401 response.
+  
+## TODO
 
 
 - [ ] Objects
