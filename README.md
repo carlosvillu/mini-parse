@@ -37,7 +37,7 @@ When you ask for a collection there are 3 important GET parameters,
 
 ### Example of a valid query
 
-Assuming we have already created a to-do collection for a GTD tool, a sample of a typical query could be as follows,
+Assuming we have already created a to-do collection for a GTD tool, a sample of a typical query would be as follows,
 
 `http://localhost:3000/1/classes/todo?where=%7B%22key%22:%22value%22%7D&limit=1&skip=1`
 :)
@@ -58,12 +58,32 @@ URL | Verb | Description
 * To log in, make a GET request with `username` and `password` as mandatory parameters in the query string `http://localhost:3000/1/login?username=pepito&password=123`
   * Correct log-in leads to a 201 response with all the information that went through at the moment the user was created, except the password field. Also, a `token` field is added with a JWT token that should be used in all `/me` requests.
   * Wrong log-in leads to a 401 response.
-  
-## TODO
+
+
+## Me
+
+The `/me`resource represents a user who is currently logged in. As the backend does not have a status, it does not save  information of the session. This means that, with every petition that involves the user, the JTW that has been obtained during sign-up or log-in needs to be sent to the backend.
+
+This is a sample of a header to be sent,
+
+```
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU2YzYxMWRmYzUyOWRhZDIyNTIzMjY1ZCIsImlhdCI6MTQ1NjE2MzgwOH0.U4tmjrOVvxWx5DDmx1WV39S5HURX9q5EZv5guCmdY20
+```
+This token includes all necessary information to identify the user on whom an action needs to be performed.
+
+URL | Verb | Description
+--- | ---- | -----------
+/1/me | GET | Get user info
+/1/me | PUT | Update info
+/1/me | DELETE | Delete user
+
+Under no circumstances should the `password` field be sent to the client. Thus, a safe way to proceed would be to save the token at `LocalStorage` from the time they logged in and until they log out.
+
+## TO-DO
 
 
 - [ ] Objects
- - [ ] Populate retrives with the `include`option
+ - [ ] Populate retrives with the `include` option
  - [ ] Embedded objectId
  - [ ] Counters
  - [ ] Arrays
